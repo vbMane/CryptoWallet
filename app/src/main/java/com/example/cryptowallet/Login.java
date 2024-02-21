@@ -110,6 +110,10 @@ public class Login extends AppCompatActivity {
                                 Intent intent = new Intent(Login.this, UserDashboard.class);
                                 startActivity(intent);
                                 finish();
+                            } else if (usersData.getStatus().equals("R")){
+
+                                Loading.stopLoad();
+                                Toast.makeText(Login.this, "Your Account Request Rejected", Toast.LENGTH_SHORT).show();
                             }else {
                                 Loading.stopLoad();
                                 Toast.makeText(Login.this, "Your Account Activated Soon...", Toast.LENGTH_SHORT).show();

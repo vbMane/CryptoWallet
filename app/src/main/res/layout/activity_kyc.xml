@@ -44,7 +44,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
-            android:text="Choose Pan Image (.jpg only)"
+            android:text="Choose Pan Image "
             android:textSize="20sp" />
 
         <Button

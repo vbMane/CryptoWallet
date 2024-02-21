@@ -3,6 +3,7 @@ package com.example.cryptowallet.Admin;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -97,9 +98,13 @@ public class CheckAccountRequest extends AppCompatActivity {
 
     private void updateValue(String mobile) {
         databaseReference.child("Users").child(mobile).child("Profile").child("Status").setValue("V");
+        startActivity(new Intent(CheckAccountRequest.this,AdminDashboard.class));
+        finishAffinity();
     }
 
     private void Remove(String mobile) {
-        databaseReference.child("Users").child(mobile).removeValue();
+        databaseReference.child("Users").child(mobile).child("Profile").child("Status").setValue("R");
+        startActivity(new Intent(CheckAccountRequest.this,AdminDashboard.class));
+        finishAffinity();
     }
 }

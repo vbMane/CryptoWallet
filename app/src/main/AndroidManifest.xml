@@ -20,6 +20,24 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".User.Profile"
+            android:exported="false" />
+        <activity
+            android:name=".User.WithDrawCoins"
+            android:exported="false" />
+        <activity
+            android:name=".SendCoin"
+            android:exported="false" />
+        <activity
+            android:name=".User.BUYCoin"
+            android:exported="false" />
+        <activity
+            android:name=".User.AllPlans"
+            android:exported="false" />
+        <activity
+            android:name=".User.DepositeCoins"
+            android:exported="false" />
+        <activity
             android:name=".Admin.CheckAccountRequest"
             android:exported="false" />
         <activity
