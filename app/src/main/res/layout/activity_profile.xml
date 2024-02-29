@@ -169,6 +169,15 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/potBtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:drawableEnd="@drawable/baseline_arrow_forward_ios_24"
+                            android:text="Portfolio"
+                            android:textSize="20sp" />
+
+                        <TextView
                             android:id="@+id/withBtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -183,7 +192,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:drawableEnd="@drawable/baseline_arrow_forward_ios_24"
-                            android:text="Deposite"
+                            android:text="My Plans"
                             android:textSize="20sp" />
                     </LinearLayout>
                 </RelativeLayout>

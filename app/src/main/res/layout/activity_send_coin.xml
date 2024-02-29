@@ -6,19 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".SendCoin">
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:gravity="center"
-        android:text="Deposite"
-        android:textSize="20sp" />
-
     <androidx.cardview.widget.CardView
         android:id="@+id/main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,13 +24,15 @@
                 android:id="@+id/img"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:layout_margin="10dp" />
+                android:layout_margin="10dp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/UsdtAd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp" />
+                android:layout_margin="10dp"
+                android:text="*  *  *  *  *  *  *  *  *  *  *  *" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

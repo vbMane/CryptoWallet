@@ -43,6 +43,15 @@ public class Profile extends AppCompatActivity {
         withBtn= findViewById(R.id.withBtn);
         dpBtn= findViewById(R.id.DpBtn);
 
+
+        findViewById(R.id.potBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(Profile.this,Portfolio.class));
+            }
+        });
+
         withBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -62,7 +62,7 @@ public class AllPlans extends AppCompatActivity {
             public void run() {
                 updateData();
             }
-        },1000);
+        },5000);
 
 
     }
