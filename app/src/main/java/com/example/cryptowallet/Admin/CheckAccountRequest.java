@@ -27,10 +27,10 @@ public class CheckAccountRequest extends AppCompatActivity {
 
 
     private Button rejectButton, acceptButton;
-    private ImageView imageView;
-    private TextView nameTextView, mobileTextView, addressTextView, dobTextView;
+    private ImageView imageView,adIMG;
+    private TextView nameTextView, mobileTextView, addressTextView, dobTextView,UpiIDTV;
 
-    ProgressBar progressBar;
+    ProgressBar progressBar,progressBarAD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +44,9 @@ public class CheckAccountRequest extends AppCompatActivity {
         mobileTextView = findViewById(R.id.textViewMobile);
         addressTextView = findViewById(R.id.textViewAddress);
         dobTextView = findViewById(R.id.textViewDOB);
+        UpiIDTV = findViewById(R.id.textViewUpiID);
+        adIMG = findViewById(R.id.adIMG);
+        progressBarAD = findViewById(R.id.progressBarAD);
         progressBar = findViewById(R.id.progressBar);
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -54,11 +57,14 @@ public class CheckAccountRequest extends AppCompatActivity {
         String address = getIntent().getStringExtra("address");
         String dob = getIntent().getStringExtra("dob");
         String imgUrl = getIntent().getStringExtra("imgUrl");
+        String ADimgUrl = getIntent().getStringExtra("ADimgUrl");
+        String UpiID = getIntent().getStringExtra("UpiID");
 
         nameTextView.setText("Name : "+name);
         mobileTextView.setText("Mobile Number : "+mobile);
         addressTextView.setText("Address : "+address);
         dobTextView.setText("Date of Birth : "+dob);
+        UpiIDTV.setText("UpiID : "+UpiID);
 
 
         Glide.with(this)
@@ -78,6 +84,24 @@ public class CheckAccountRequest extends AppCompatActivity {
                     }
                 })
                 .into(imageView);
+
+        Glide.with(this)
+                .load(ADimgUrl)
+                .error(R.drawable.applogo)
+                .addListener(new RequestListener<Drawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        progressBarAD.setVisibility(View.GONE);
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        progressBarAD.setVisibility(View.GONE);
+                        return false;
+                    }
+                })
+                .into(adIMG);
 
 
         findViewById(R.id.Accept).setOnClickListener(new View.OnClickListener() {

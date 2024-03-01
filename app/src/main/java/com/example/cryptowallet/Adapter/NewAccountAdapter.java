@@ -2,6 +2,7 @@ package com.example.cryptowallet.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,7 @@ public class NewAccountAdapter extends RecyclerView.Adapter<NewAccountAdapter.Vi
         holder.textViewMobile.setText("Mobile: "+po.getPhone());
         holder.textViewAddress.setText("Address: "+po.getAddress());
         holder.textViewDOB.setText("DOB: "+po.getDOB());
+        Log.e("error",po.getUpiID());
 
         holder.itemView.findViewById(R.id.card).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +53,8 @@ public class NewAccountAdapter extends RecyclerView.Adapter<NewAccountAdapter.Vi
                 intent.putExtra("address", po.getAddress());
                 intent.putExtra("dob", po.getDOB());
                 intent.putExtra("imgUrl", po.getPanImg());
+                intent.putExtra("ADimgUrl", po.getAadhaar());
+                intent.putExtra("UpiID", po.getUpiID());
                 context.startActivity(intent);
             }
         });

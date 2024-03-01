@@ -37,17 +37,20 @@ import java.util.Random;
 public class Kyc extends AppCompatActivity {
 
     private String  downloadImageUrl;
+    private String  ADdownloadImageUrl;
     private static final int GalleryPick = 1;
-    private Uri ImageUri;
+    private static final int ADGalleryPick = 101;
+    private Uri ImageUri,adImageUri;
 
     private StorageReference ImagesRef;
 
-    ImageView select_image;
+    ImageView select_image,select_image_adhar;
 
     String name;
     String address;
     String phoneNumber;
     String dateOfBirth;
+    String UpiID;
     String password;
 
     @Override
@@ -60,9 +63,11 @@ public class Kyc extends AppCompatActivity {
         address = intent.getStringExtra("address");
         phoneNumber = intent.getStringExtra("phone");
         dateOfBirth = intent.getStringExtra("DOB");
+        UpiID = intent.getStringExtra("UpiID");
         password = intent.getStringExtra("pass");
 
         select_image = findViewById(R.id.select_image);
+        select_image_adhar = findViewById(R.id.select_image_adhar);
 
         select_image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,11 +75,20 @@ public class Kyc extends AppCompatActivity {
                 OpenGallery();
             }
         });
+        select_image_adhar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OpenADGallery();
+            }
+        });
+
         findViewById(R.id.submitBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (ImageUri == null){
                     Toast.makeText(Kyc.this, "Please select Pan Image.", Toast.LENGTH_SHORT).show();
+                }else if (adImageUri == null){
+                    Toast.makeText(Kyc.this, "Please select Aadhaar Image.", Toast.LENGTH_SHORT).show();
                 }else {
                     Loading.startLoad(Kyc.this);
                     AddPanImage();
@@ -145,6 +159,58 @@ public class Kyc extends AppCompatActivity {
                                 if (task.isSuccessful())
                                 {
                                     downloadImageUrl = task.getResult().toString();
+                                    AddADImage();
+                                }
+                            }
+                        });
+                    }
+                });
+
+            }
+        });
+    }
+    private void AddADImage() {
+
+        ImagesRef = FirebaseStorage.getInstance().getReference().child("Aadhaar");
+        int randomNumberInRange = new Random().nextInt(901) + 100;
+
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+
+                final StorageReference filePath = ImagesRef.child(adImageUri.getLastPathSegment() + randomNumberInRange + "."+getImageExtension(adImageUri));
+
+                final UploadTask uploadTask = filePath.putFile(adImageUri);
+
+                uploadTask.addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        String message = e.toString();
+                        Toast.makeText(Kyc.this, "Error: " + message, Toast.LENGTH_SHORT).show();
+                        Loading.stopLoad();
+                    }
+                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        //Toast.makeText(Kyc.this, "Pan Image uploaded Successfully...", Toast.LENGTH_SHORT).show();
+                        Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                            @Override
+                            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                                if (!task.isSuccessful())
+                                {
+                                    throw task.getException();
+
+                                }
+
+                                ADdownloadImageUrl = filePath.getDownloadUrl().toString();
+                                return filePath.getDownloadUrl();
+                            }
+                        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Uri> task) {
+                                if (task.isSuccessful())
+                                {
+                                    ADdownloadImageUrl = task.getResult().toString();
                                     SaveInfoToDatabase();
                                 }
                             }
@@ -175,6 +241,8 @@ public class Kyc extends AppCompatActivity {
                         userdataMap.put("DOB", dateOfBirth);
                         userdataMap.put("address", address );
                         userdataMap.put("PanImg", downloadImageUrl );
+                        userdataMap.put("Aadhaar", ADdownloadImageUrl );
+                        userdataMap.put("UpiID", UpiID );
                         userdataMap.put("Status", "NV" );
                         userdataMap.put("password", password);
 
@@ -215,6 +283,13 @@ public class Kyc extends AppCompatActivity {
         galleryIntent.setType("image/*");
         startActivityForResult(galleryIntent, GalleryPick);
     }
+    private void OpenADGallery(){
+        Intent galleryIntent = new Intent();
+        galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+        galleryIntent.setType("image/*");
+        startActivityForResult(galleryIntent, ADGalleryPick);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
@@ -225,5 +300,12 @@ public class Kyc extends AppCompatActivity {
             ImageUri = data.getData();
             select_image.setImageURI(ImageUri);
         }
+        if (requestCode==ADGalleryPick  &&  resultCode==RESULT_OK  &&  data!=null)
+        {
+            adImageUri = data.getData();
+            select_image_adhar.setImageURI(adImageUri);
+        }
+
+
     }
 }

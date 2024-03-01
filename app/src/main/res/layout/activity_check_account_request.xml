@@ -7,44 +7,6 @@
     tools:context=".Admin.CheckAccountRequest">
 
     <LinearLayout
-        android:id="@+id/btns"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/rejectBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:text="Reject" />
-
-        <Button
-            android:id="@+id/Accept"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:text="Accept" />
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/btns"
-        android:layout_below="@id/data" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
-
-    <LinearLayout
         android:id="@+id/data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -79,5 +41,109 @@
             android:layout_height="wrap_content"
             android:text="DOB: " />
 
+        <TextView
+            android:id="@+id/textViewUpiID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UpiID: " />
+
     </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/btns"
+        android:layout_below="@id/data">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/pTV" />
+
+                <TextView
+                    android:id="@+id/pTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="Pan Image :"
+                    android:textSize="20sp" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
+
+                <TextView
+                    android:id="@+id/aTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="Aadhaar Image :"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/adIMG"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/aTV" />
+
+                <ProgressBar
+                    android:id="@+id/progressBarAD"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/btns"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/rejectBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:text="Reject" />
+
+        <Button
+            android:id="@+id/Accept"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:text="Accept" />
+    </LinearLayout>
+
 </RelativeLayout>

@@ -47,9 +47,10 @@ public class Register extends AppCompatActivity {
     String Name;
     String DateOfBirth;
     String address;
+    String upiID;
     String pass;
     private TextView dob;
-    EditText nameET, MobileET, addressET, PassET;
+    EditText nameET, MobileET, addressET, PassET,UpiET;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,7 @@ public class Register extends AppCompatActivity {
         nameET = findViewById(R.id.nameET);
         MobileET = findViewById(R.id.MobileET);
         addressET = findViewById(R.id.addressET);
+        UpiET = findViewById(R.id.UpiET);
 
 
         dob.setOnClickListener(new View.OnClickListener() {
@@ -78,8 +80,9 @@ public class Register extends AppCompatActivity {
             DateOfBirth = dob.getText().toString();
             pass = PassET.getText().toString().trim();
             address = addressET.getText().toString();
+            upiID = UpiET.getText().toString();
 
-            if (Name.isEmpty() || DateOfBirth.isEmpty() || pass.isEmpty()) {
+            if (Name.isEmpty() || DateOfBirth.isEmpty() || pass.isEmpty() || upiID.isEmpty()) {
                 Toast.makeText(this, "all field Required..", Toast.LENGTH_SHORT).show();
             } else if (phoneNumber.length() != 10) {
                 Toast.makeText(this, "Please enter valid Mobile Number.", Toast.LENGTH_SHORT).show();
@@ -145,6 +148,7 @@ public class Register extends AppCompatActivity {
                                     .putExtra("address", address)
                                     .putExtra("phone", phoneNumber)
                                     .putExtra("DOB", DateOfBirth)
+                                    .putExtra("UpiID", upiID)
                                     .putExtra("pass", pass));
 
                         }else {

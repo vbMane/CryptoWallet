@@ -1,16 +1,18 @@
 package com.example.cryptowallet.Model;
 
 public class Users {
-    private String Full_Name, phone, DOB, address, PanImg,Status,password;
+    private String Full_Name, phone, DOB, address,UpiID,Aadhaar, PanImg,Status,password;
 
     public Users() {
     }
 
-    public Users(String full_Name, String phone, String DOB, String address, String panImg, String status, String password) {
+    public Users(String full_Name, String phone, String DOB, String address, String aadhaar, String upiID, String panImg, String status, String password) {
         Full_Name = full_Name;
         this.phone = phone;
         this.DOB = DOB;
         this.address = address;
+        Aadhaar = aadhaar;
+        UpiID = upiID;
         PanImg = panImg;
         Status = status;
         this.password = password;
@@ -20,55 +22,35 @@ public class Users {
         return Full_Name;
     }
 
-    public void setFull_Name(String full_Name) {
-        Full_Name = full_Name;
-    }
-
     public String getPhone() {
         return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public String getDOB() {
         return DOB;
     }
 
-    public void setDOB(String DOB) {
-        this.DOB = DOB;
-    }
-
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public String getAadhaar() {
+        return Aadhaar;
+    }
+
+    public String getUpiID() {
+        return UpiID;
     }
 
     public String getPanImg() {
         return PanImg;
     }
 
-    public void setPanImg(String panImg) {
-        PanImg = panImg;
-    }
-
     public String getStatus() {
         return Status;
     }
 
-    public void setStatus(String status) {
-        Status = status;
-    }
-
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }

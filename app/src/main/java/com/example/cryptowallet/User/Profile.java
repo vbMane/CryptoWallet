@@ -26,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 public class Profile extends AppCompatActivity {
 
 
-    TextView NameTV,DOBTV,addressTV,phoneTV;
+    TextView NameTV,DOBTV,addressTV,phoneTV,UpiIDTV;
 
     TextView withBtn,dpBtn;
     @Override
@@ -39,6 +39,7 @@ public class Profile extends AppCompatActivity {
         DOBTV = findViewById(R.id.DOBTV);
         addressTV = findViewById(R.id.AddressTV);
         phoneTV = findViewById(R.id.phoneTV);
+        UpiIDTV = findViewById(R.id.UpiIDTV);
 
         withBtn= findViewById(R.id.withBtn);
         dpBtn= findViewById(R.id.DpBtn);
@@ -100,11 +101,13 @@ public class Profile extends AppCompatActivity {
                         String address = dataSnapshot.child("address").getValue(String.class);
                         String phone = dataSnapshot.child("phone").getValue(String.class);
                         String DOB = dataSnapshot.child("DOB").getValue(String.class);
+                        String UpiID = dataSnapshot.child("UpiID").getValue(String.class);
 
                         NameTV.setText(Full_Name);
                         addressTV.setText(address);
                         phoneTV.setText(phone);
                         DOBTV.setText(DOB);
+                        UpiIDTV.setText(UpiID);
                         Loading.stopLoad();
                     }
 
