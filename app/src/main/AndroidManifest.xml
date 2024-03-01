@@ -20,6 +20,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".Admin.ViewUserData"
+            android:exported="false" />
+        <activity
+            android:name=".Admin.AllUsers"
+            android:exported="false" />
+        <activity
             android:name=".User.Portfolio"
             android:exported="false" />
         <activity
